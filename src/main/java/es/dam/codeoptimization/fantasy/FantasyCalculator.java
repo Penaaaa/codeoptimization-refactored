@@ -12,132 +12,131 @@ import es.dam.codeoptimization.PlayerStats;
 public class FantasyCalculator {
 
     // Method to calculate the points
-    public static int calcP(PlayerStats s) {
-        int r = 0; 
-        int punts = 0;
+    public static int calculatePoints(PlayerStats stats) {
+        int result = 0; 
         
-        int m = s.minutes;
-        int g = s.goals;
-        int a = s.assists;
-        boolean y = s.yellowCard;
-        boolean red = s.redCard;
-        int p = s.saves;
-        int ga = s.goalsAgainst;
-        char res = s.matchResult;
-        String pos = s.position;
+        int minutes = stats.minutes;
+        int goals = stats.goals;
+        int assists = stats.assists;
+        boolean yellowCard = stats.yellowCard;
+        boolean redCard = stats.redCard;
+        int saves = stats.saves;
+        int goalsAgainst = stats.goalsAgainst;
+        char matchResult = stats.matchResult;
+        String position = stats.position;
 
         // --- GOALKEEPER LOGIC ---
-        if (pos.equals("PORTERO")) {
-            if (m > 0 && m < 60) {
-                r = r + 3;
-            } else if (m >= 60) {
-                r = r + 5;
+        if (position.equals("PORTERO")) {
+            if (minutes > 0 && minutes < 60) {
+                result = result + 3;
+            } else if (minutes >= 60) {
+                result = result + 5;
             }
 
-            for (int i = 0; i < g; i++) {
-                r = r + 5;
+            for (int i = 0; i < goals; i++) {
+                result = result + 5;
             }
 
-            r = r + (a * 6);
+            result = result + (assists * 6);
 
             // 1 point per save
-            r = r + p; 
+            result = result + saves; 
             
-            if (ga == 0) {
-                r = r + 5; 
-            } else if (ga == 1) {
-                r = r + 3;
-            } else if (ga == 2) {
-                r = r + 1;
+            if (goalsAgainst == 0) {
+                result = result + 5; 
+            } else if (goalsAgainst == 1) {
+                result = result + 3;
+            } else if (goalsAgainst == 2) {
+                result = result + 1;
             }
 
-            if (y == true) r = r - 3; 
-            if (red == true) r = r - 5;
+            if (yellowCard == true) result = result - 3; 
+            if (redCard == true) result = result - 5;
             
-            if (res == 'G') {
-                r = r + 5;
-            } else if (res == 'E') {
-                r = r + 2;
+            if (matchResult == 'G') {
+                result = result + 5;
+            } else if (matchResult == 'E') {
+                result = result + 2;
             }
 
         // --- DEFENDER LOGIC ---
-        } else if (pos.equals("DEFENSA")) {
-            if (m > 0 && m < 60) {
-                r = r + 3;
-            } else if (m >= 60) {
-                r = r + 5;
+        } else if (position.equals("DEFENSA")) {
+            if (minutes > 0 && minutes < 60) {
+                result = result + 3;
+            } else if (minutes >= 60) {
+                result = result + 5;
             }
 
-            for (int i = 0; i < g; i++) {
-                r = r + 5;
+            for (int i = 0; i < goals; i++) {
+                result = result + 5;
             }
 
-            r = r + (a * 6);
+            result = result + (assists * 6);
 
-            if (ga == 0) {
-                r = r + 5; 
-            } else if (ga == 1) {
-                r = r + 3;
-            } else if (ga == 2) {
-                r = r + 1;
+            if (goalsAgainst == 0) {
+                result = result + 5; 
+            } else if (goalsAgainst == 1) {
+                result = result + 3;
+            } else if (goalsAgainst == 2) {
+                result = result + 1;
             }
 
-            if (y == true) r = r - 3;
-            if (red == true) r = r - 5;
+            if (yellowCard == true) result = result - 3;
+            if (redCard == true) result = result - 5;
             
-            if (res == 'G') {
-                r = r + 5;
-            } else if (res == 'E') {
-                r = r + 2;
+            if (matchResult == 'G') {
+                result = result + 5;
+            } else if (matchResult == 'E') {
+                result = result + 2;
             }
 
         // --- MIDFIELDER LOGIC ---
-        } else if (pos.equals("MEDIO")) {
-            if (m > 0 && m < 60) {
-                r = r + 3;
-            } else if (m >= 60) {
-                r = r + 5;
+        } else if (position.equals("MEDIO")) {
+            if (minutes > 0 && minutes < 60) {
+                result = result + 3;
+            } else if (minutes >= 60) {
+                result = result + 5;
             }
 
-            for (int i = 0; i < g; i++) {
-                r = r + 5;
+            for (int i = 0; i < goals; i++) {
+                result = result + 5;
             }
 
-            r = r + (a * 6);
+            result = result + (assists * 6);
 
-            if (y == true) r = r - 3;
-            if (red == true) r = r - 5;
+            if (yellowCard == true) result = result - 3;
+            if (redCard == true) result = result - 5;
             
-            if (res == 'G') {
-                r = r + 5;
-            } else if (res == 'E') {
-                r = r + 2;
+            if (matchResult == 'G') {
+                result = result + 5;
+            } else if (matchResult == 'E') {
+                result = result + 2;
             }
 
         // --- FORWARD LOGIC ---
-        } else if (pos.equals("DELANTERO")) {
-            if (m > 0 && m < 60) {
-                r = r + 3;
-            } else if (m >= 60) {
-                r = r + 5;
+        } else if (position.equals("DELANTERO")) {
+            if (minutes > 0 && minutes < 60) {
+                result = result + 3;
+            } else if (minutes >= 60) {
+                result = result + 5;
             }
 
-            for (int i = 0; i < g; i++) {
-                r = r + 6;
+            for (int i = 0; i < goals; i++) {
+                result = result + 6;
             }
 
-            r = r + (a * 5);
+            result = result + (assists * 5);
 
-            if (y == true) r = r - 3;
-            if (red == true) r = r - 5;
+            if (yellowCard == true) result = result - 3;
+            if (redCard == true) result = result - 5;
             
-            if (res == 'G') {
-                r = r + 5;
-            } else if (res == 'E') {
-                r = r + 2;
+            if (matchResult == 'G') {
+                result = result + 5;
+            } else if (matchResult == 'E') {
+                result = result + 2;
             }
         }
 
-        return r;
+        return result;
     }
 }

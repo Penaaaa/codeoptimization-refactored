@@ -17,7 +17,7 @@ public class MainClass {
         PlayerStats playerStats = PlayerInput.askPlayerStats();
         
         // 2. Pass the data to the calculator that you have to refactor
-        int puntosTotales = FantasyCalculator.calcP(playerStats);
+        int puntosTotales = FantasyCalculator.calculatePoints(playerStats);
         
         // 3. Display the final result
         System.out.println("\n=================================");
