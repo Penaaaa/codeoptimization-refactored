@@ -39,7 +39,6 @@ public class FantasyCalculator {
 
             result = result + (assists * 6);
 
-            // 1 point per save
             result = result + saves; 
             
             if (goalsAgainst == 0) {
@@ -113,7 +112,7 @@ public class FantasyCalculator {
                 result = result + 2;
             }
 
-        // --- FORWARD LOGIC ---
+        // --- FORWARD LOGIC (MODIFIED) ---
         } else if (position.equals("DELANTERO")) {
             if (minutes > 0 && minutes < 60) {
                 result = result + 3;
@@ -121,11 +120,13 @@ public class FantasyCalculator {
                 result = result + 5;
             }
 
+            // Goles ahora valen 5 (antes valían 6)
             for (int i = 0; i < goals; i++) {
-                result = result + 6;
+                result = result + 5;
             }
 
-            result = result + (assists * 5);
+            // Asistencias ahora valen 6 (antes valían 5)
+            result = result + (assists * 6);
 
             if (yellowCard == true) result = result - 3;
             if (redCard == true) result = result - 5;
