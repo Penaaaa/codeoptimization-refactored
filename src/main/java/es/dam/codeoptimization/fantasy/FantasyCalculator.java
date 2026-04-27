@@ -13,7 +13,7 @@ import es.dam.codeoptimization.PlayerStats;
  */
 public class FantasyCalculator {
 
-    public static int calculatePoints(PlayerStats stats) {
+    public static int calcPoints(PlayerStats stats) {
         return calculateCommonPoints(stats) 
                 + calculatePointsByPosition(stats);
     }
